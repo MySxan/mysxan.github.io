@@ -16,6 +16,7 @@
 
 .info-columns {
   display: grid;
+  width: 80%;
   grid-template-columns: 1fr;
   gap: var(--space-3);
   align-items: start;
@@ -23,7 +24,11 @@
 
 .info-columns p {
   font-size: var(--text-lg);
-  line-height: 1.8;
+  line-height: 1.5;
   color: var(--color-text-secondary);
   margin: 0;
+}
+
+.info-paragraph-intro {
+  font-weight: bold;
 }

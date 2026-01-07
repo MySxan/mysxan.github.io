@@ -22,48 +22,75 @@ export function Contact() {
 
   return (
     <Section id="contact" title="Contact" className="contact-section">
-      <div className="contact-content">
-        <div className="contact-main">
-          <p className="contact-text">
-            I'm always interested in hearing about new projects and
-            opportunities.
-          </p>
-
-          {/* Email with copy button */}
-          <div className="email-block">
-            <span className="email-label">Email:</span>
-            <div className="email-line">
-              <a href={`mailto:${email}`} className="email-link">
-                {email}
-              </a>
-              <button
-                className="btn-copy"
-                onClick={handleCopyEmail}
-                title="Copy email address"
-                aria-label="Copy email to clipboard"
-              >
-                Copy
-              </button>
+      <div className="contact-wrapper">
+        <div className="contact-glass-card">
+          <div className="contact-layout">
+            {/* Left: intro */}
+            <div className="contact-intro">
+              <p className="contact-description">
+                I'm always interested in hearing about new projects and
+                opportunities.
+              </p>
             </div>
-          </div>
 
-          {/* Social links */}
-          <div className="social-links">
-            <p className="social-label">Connect:</p>
-            <div className="social-icons">
-              {links.map((link) => (
-                <a
-                  key={link.id}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-link"
-                  aria-label={link.label}
-                  title={link.label}
-                >
-                  {link.label}
-                </a>
-              ))}
+            {/* Right: contact card */}
+            <div className="contact-info-card">
+              <div className="contact-card-inner">
+                {/* Email row */}
+                <div className="contact-field">
+                  <div className="contact-field-content">
+                    <p className="contact-field-label">Email</p>
+                    <a
+                      href={`mailto:${email}`}
+                      className="contact-field-value"
+                      title={email}
+                    >
+                      {email}
+                    </a>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={handleCopyEmail}
+                    title="Copy email address"
+                    aria-label="Copy email to clipboard"
+                    className="contact-copy-btn"
+                  >
+                    Copy
+                  </button>
+                </div>
+
+                <div className="contact-divider" />
+
+                {/* Tel row */}
+                <div className="contact-field-single">
+                  <p className="contact-field-label">Tel</p>
+                  <a href="tel:+12176373373" className="contact-field-value">
+                    217-637-3373
+                  </a>
+                </div>
+
+                {/* Social */}
+                <div className="contact-social-section">
+                  <p className="contact-field-label">Connect</p>
+
+                  <div className="contact-social-links">
+                    {links.map((link) => (
+                      <a
+                        key={link.id}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="contact-social-link"
+                        aria-label={link.label}
+                        title={link.label}
+                      >
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

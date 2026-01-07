@@ -17,7 +17,7 @@ export const links: Link[] = [
   {
     id: 2,
     label: "LinkedIn",
-    url: "https://linkedin.com/in/username",
+    url: "https://www.linkedin.com/in/mysxan/",
     icon: "linkedin",
   },
   {
@@ -28,30 +28,24 @@ export const links: Link[] = [
   },
   {
     id: 4,
-    label: "Email",
-    url: "mailto:mysxan@163.com",
-    icon: "email",
-  },
-  {
-    id: 5,
     label: "Pixiv",
     url: "https://www.pixiv.net/users/53849788",
     icon: "pixiv",
   },
   {
-    id: 6,
+    id: 5,
     label: "Bilibili",
     url: "https://space.bilibili.com/455404393",
     icon: "bilibili",
   },
   {
-    id: 7,
+    id: 6,
     label: "Bandcamp",
     url: "https://mysxan.bandcamp.com/",
     icon: "bandcamp",
   },
   {
-    id: 8,
+    id: 7,
     label: "Spotify",
     url: "https://open.spotify.com/artist/0kLse57Pg4W5UN5SeGeZxB",
     icon: "spotify",

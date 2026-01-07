@@ -195,8 +195,6 @@ export function IntroStage({ onScrollComplete, children }: IntroStageProps) {
         } as React.CSSProperties
       }
     >
-      {/* Hero cover overlay (sticky), scales up with scroll progress */}
-      <div className="hero-home-overlay" aria-hidden="true" />
       {/* Title Layer - fixed at top */}
       <div
         className="title-layer"

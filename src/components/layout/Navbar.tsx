@@ -1,5 +1,5 @@
 // Navbar component - responsive navigation with smooth scroll and active section highlighting
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface NavbarProps {
   className?: string;
@@ -7,6 +7,10 @@ interface NavbarProps {
 
 export function Navbar({ className = "" }: NavbarProps) {
   const [activeSection, setActiveSection] = useState("hero");
+  const [indicatorX, setIndicatorX] = useState(0);
+  const [indicatorW, setIndicatorW] = useState(0);
+  const [indicatorVisible, setIndicatorVisible] = useState(false);
+  const linksRef = useRef<HTMLUListElement>(null);
 
   const handleBrandClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -52,6 +56,29 @@ export function Navbar({ className = "" }: NavbarProps) {
     };
   }, []);
 
+  useEffect(() => {
+    const updateIndicator = () => {
+      const list = linksRef.current;
+      if (!list) return;
+      const active = list.querySelector("a.active") as HTMLAnchorElement | null;
+      if (!active) {
+        setIndicatorVisible(false);
+        return;
+      }
+      setIndicatorVisible(true);
+      const rect = active.getBoundingClientRect();
+      const listRect = list.getBoundingClientRect();
+      const x = rect.left - listRect.left; // align left with link
+      const w = rect.width; // match link width
+      setIndicatorX(x);
+      setIndicatorW(w);
+    };
+
+    updateIndicator();
+    window.addEventListener("resize", updateIndicator);
+    return () => window.removeEventListener("resize", updateIndicator);
+  }, [activeSection]);
+
   const navLinks = [
     { href: "#projects", label: "Projects" },
     { href: "#works", label: "Works" },
@@ -66,7 +93,7 @@ export function Navbar({ className = "" }: NavbarProps) {
           MYSXAN
         </a>
         <div className="navbar-right">
-          <ul className="navbar-links">
+          <ul className="navbar-links" ref={linksRef}>
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a
@@ -79,6 +106,15 @@ export function Navbar({ className = "" }: NavbarProps) {
                 </a>
               </li>
             ))}
+            <span
+              className="nav-indicator"
+              style={{
+                transform: `translateX(${indicatorX}px)`,
+                width: indicatorVisible ? `${indicatorW}px` : "0px",
+                opacity: indicatorVisible ? 1 : 0,
+              }}
+              aria-hidden="true"
+            />
           </ul>
         </div>
       </div>

@@ -11,7 +11,7 @@ export function Footer() {
         <div className="footer-content">
           <div className="footer-info">
             <p className="footer-copyright">
-              &copy; {currentYear} My Portfolio. All rights reserved.
+              &copy; {currentYear} MySxan. All rights reserved.
             </p>
             <p className="footer-tagline">
               Crafted with React, TypeScript, and creative passion.
