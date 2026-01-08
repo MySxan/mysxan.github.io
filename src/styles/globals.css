@@ -58,6 +58,9 @@
   --transition-fast: 150ms var(--ease-out);
   --transition-base: 300ms var(--ease-out);
   --transition-slow: 500ms var(--ease-smooth);
+
+  /* Grid system - 24 column layout */
+  --grid-cols: 24;
 }
 
 /* Dark mode */

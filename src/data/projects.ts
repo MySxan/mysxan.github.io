@@ -1,79 +1,125 @@
-// Project data type definition
-export interface Project {
-  id: number;
-  title: string;
-  description: string;
-  tags: string[];
-  repoUrl?: string;
-  demoUrl?: string;
-  year: number;
-  featured: boolean;
+// Project Link Types
+export type ProjectLinkVariant = "primary" | "secondary" | "ghost";
+
+export interface ProjectLink {
+  label: "Live Demo" | "Repository" | "Case Study";
+  href: string;
+  variant?: ProjectLinkVariant;
 }
 
-// Mock projects data
-export const projects: Project[] = [
+// Showcase Project (Featured + Compact Layout)
+export interface ShowcaseProject {
+  id: string;
+  cnTitle?: string;
+  title: string;
+  year: string;
+  oneLiner: string;
+  highlights: string[];
+  tags: string[];
+  links: ProjectLink[];
+}
+
+export const showcaseProjects: ShowcaseProject[] = [
   {
-    id: 1,
-    title: "E-Commerce Platform",
-    description:
-      "A full-stack e-commerce platform with React, Node.js, and MongoDB. Features include user authentication, shopping cart, payment integration, and admin dashboard.",
-    tags: ["React", "Node.js", "MongoDB", "TypeScript", "Stripe"],
-    repoUrl: "https://github.com/username/ecommerce-platform",
-    demoUrl: "https://demo-ecommerce.example.com",
-    year: 2025,
-    featured: true,
+    id: "phigrim",
+    title: "Phigrim",
+    year: "2025",
+    oneLiner:
+      "Community rhythm game with chart upload/browse + in-game downloader.",
+    highlights: [
+      "Designed end-to-end UX for chart discovery and installation",
+      "Built modular chart pipeline and metadata validation",
+      "Optimized scroll + asset loading for smooth mobile performance",
+    ],
+    tags: ["React", "TypeScript", "Node.js", "RAG", "Design System"],
+    links: [
+      { label: "Repository", href: "#", variant: "primary" },
+      { label: "Live Demo", href: "#", variant: "secondary" },
+    ],
   },
   {
-    id: 2,
-    title: "Task Management App",
-    description:
-      "A collaborative task management application with real-time updates using WebSocket. Built with React, Express, and PostgreSQL.",
-    tags: ["React", "Express", "PostgreSQL", "WebSocket", "Redux"],
-    repoUrl: "https://github.com/username/task-manager",
-    demoUrl: "https://demo-tasks.example.com",
-    year: 2025,
-    featured: true,
+    id: "arxsbot",
+    title: "ArxsBot",
+    year: "2025",
+    oneLiner:
+      "Modular QQ bot with adapters/plugins + storage-ready architecture.",
+    highlights: [
+      "Adapter-first design",
+      "Plugin framework",
+      "Policy/risk module",
+    ],
+    tags: ["TypeScript", "NapCat", "Monorepo"],
+    links: [
+      { label: "Repository", href: "#", variant: "primary" },
+      { label: "Live Demo", href: "#", variant: "secondary" },
+    ],
   },
   {
-    id: 3,
-    title: "Weather Dashboard",
-    description:
-      "A weather dashboard that displays current weather and forecasts using OpenWeather API. Responsive design with data visualization.",
-    tags: ["React", "TypeScript", "Chart.js", "API Integration"],
-    repoUrl: "https://github.com/username/weather-dashboard",
-    demoUrl: "https://demo-weather.example.com",
-    year: 2024,
-    featured: true,
+    id: "wordle-helper",
+    title: "wordle-helper",
+    year: "2024",
+    oneLiner:
+      "Comprehensive component library with 50+ reusable UI components and design tokens.",
+    highlights: [
+      "Built Storybook documentation with live previews",
+      "Implemented theming system with light/dark modes",
+      "Created accessibility guidelines and WCAG compliance standards",
+    ],
+    tags: ["React", "TypeScript", "Storybook", "CSS-in-JS", "A11y"],
+    links: [
+      { label: "Repository", href: "#", variant: "primary" },
+      { label: "Live Demo", href: "#", variant: "secondary" },
+    ],
   },
   {
-    id: 4,
-    title: "Portfolio Generator",
-    description:
-      "A tool to generate portfolio websites from markdown files. Built with Next.js and supports multiple themes.",
-    tags: ["Next.js", "TypeScript", "Markdown", "Tailwind CSS"],
-    repoUrl: "https://github.com/username/portfolio-generator",
-    year: 2024,
-    featured: false,
+    id: "course-scheduler",
+    title: "course-scheduler",
+    year: "2024",
+    oneLiner:
+      "Interactive dashboard for tracking application metrics and user behavior patterns.",
+    highlights: [
+      "Real-time data sync with WebSocket connections",
+      "Advanced chart visualizations with D3.js",
+      "Custom filtering and drill-down capabilities",
+    ],
+    tags: ["React", "Node.js", "D3.js", "WebSocket", "PostgreSQL"],
+    links: [
+      { label: "Repository", href: "#", variant: "primary" },
+      { label: "Live Demo", href: "#", variant: "secondary" },
+    ],
   },
   {
-    id: 5,
-    title: "Chat Application",
-    description:
-      "Real-time chat application with room support, built with Socket.io and React.",
-    tags: ["React", "Socket.io", "Node.js", "Express"],
-    repoUrl: "https://github.com/username/chat-app",
-    demoUrl: "https://demo-chat.example.com",
-    year: 2024,
-    featured: true,
+    id: "uniscraper",
+    title: "uniscraper",
+    year: "2024",
+    oneLiner:
+      "Native iOS and Android application for task management and team collaboration.",
+    highlights: [
+      "Built with React Native for code sharing",
+      "Offline-first architecture with local sync",
+      "Push notifications and real-time updates",
+    ],
+    tags: ["React Native", "TypeScript", "Firebase", "Redux", "Expo"],
+    links: [
+      { label: "Repository", href: "#", variant: "primary" },
+      { label: "Live Demo", href: "#", variant: "secondary" },
+    ],
   },
   {
-    id: 6,
-    title: "Blog Platform",
-    description:
-      "A minimalist blog platform with markdown support and dark mode. Built with React and Firebase.",
-    tags: ["React", "Firebase", "Markdown", "CSS"],
-    repoUrl: "https://github.com/username/blog-platform",
-    year: 2023,
-    featured: false,
+    id: "ai-translator-extension",
+    title: "ai-translator-extension",
+    year: "2023",
+    oneLiner:
+      "API-first content management system with flexible content modeling and multi-language support.",
+    highlights: [
+      "GraphQL API for flexible content querying",
+      "Webhook-based publishing pipeline",
+      "Role-based access control and audit logs",
+    ],
+    tags: ["Node.js", "GraphQL", "MongoDB", "TypeScript", "Docker"],
+    links: [
+      { label: "Repository", href: "#", variant: "primary" },
+      { label: "Live Demo", href: "#", variant: "secondary" },
+    ],
   },
 ];
