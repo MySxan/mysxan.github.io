@@ -917,11 +917,6 @@ html[lang="zh"] .works-layout {
   flex-shrink: 0;
 }
 
-.lang-zh .works-title-vertical,
-html[lang="zh"] .works-title-vertical {
-  font-size: calc(var(--text-3xl) * 0.88);
-}
-
 .works-container {
   position: relative;
   flex: 1;
@@ -1407,7 +1402,7 @@ html[lang="zh"] .works-title-vertical {
   line-height: var(--line-height-normal);
   color: var(--color-text);
   margin: 0;
-  max-width: 600px;
+  
 }
 
 .contact-info-card {
@@ -1813,6 +1808,11 @@ html[lang="zh"] .works-title-vertical {
     letter-spacing: -0.02em;
   }
 
+  .lang-zh .works-title-vertical,
+  html[lang="zh"] .works-title-vertical {
+    font-size: var(--text-2xl);
+  }
+
   .works-edge-mask {
     width: 60px;
   }
@@ -2202,12 +2202,12 @@ html[lang="zh"] .works-title-vertical {
     a,
     button,
     .hero-lang-sep,
-      .hero-logo,
-      .work-meta,
-      .project-year,
-      .skills-list,
-      .timeline-title
-    ),
+    .hero-logo,
+    .work-meta,
+    .project-year,
+    .skills-list,
+    .timeline-title
+  ),
 .lang-change footer :is(p, a) {
   animation: langTextIn 520ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
   animation-fill-mode: both;
@@ -2254,12 +2254,12 @@ html[lang="zh"] .works-title-vertical {
       li,
       a,
       button,
-        .hero-lang-sep,
-        .work-meta,
-        .project-year,
-        .skills-list,
-        .timeline-title
-      ),
+      .hero-lang-sep,
+      .work-meta,
+      .project-year,
+      .skills-list,
+      .timeline-title
+    ),
   .lang-change footer :is(p, a) {
     animation: none;
   }
