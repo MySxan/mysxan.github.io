@@ -15,7 +15,7 @@
     "contact": "Contact"
   },
   "intro": {
-    "subtitle": "Developer & Designer"
+    "subtitle": "Inspiration / Creation / Expression"
   },
   "hero": {
     "tagline": "FULL STACK DEVELOPER & CREATIVE CONTENT CREATOR",
@@ -61,16 +61,17 @@
   },
   "contact": {
     "title": "Contact",
-    "description": "I'm always interested in hearing about new projects and opportunities.",
+    "description": "I'm always interested in hearing about new projects and opportunities.<br/>Please feel free to contact me for anything!",
     "emailLabel": "Email",
     "telLabel": "Tel",
     "connectLabel": "Connect",
-    "copy": "Copy",
     "copyEmailTitle": "Copy email address",
     "copyEmailAria": "Copy email to clipboard",
+    "copyTelTitle": "Copy phone number",
+    "copyTelAria": "Copy phone number to clipboard",
     "toast": {
-      "copySuccess": "Email copied to clipboard!",
-      "copyError": "Failed to copy email"
+      "copySuccess": "Copied to clipboard!",
+      "copyError": "Failed to copy"
     }
   },
   "footer": {

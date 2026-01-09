@@ -9,6 +9,12 @@ export interface Link {
 // Mock links data
 export const links: Link[] = [
   {
+    id: 8,
+    label: "QQ",
+    url: "https://qm.qq.com/q/KvoTP4H3yO",
+    icon: "qq",
+  },
+  {
     id: 1,
     label: "GitHub",
     url: "https://github.com/MySxan",
@@ -22,7 +28,7 @@ export const links: Link[] = [
   },
   {
     id: 3,
-    label: "Twitter",
+    label: "X",
     url: "https://x.com/rts_ms",
     icon: "twitter",
   },
@@ -49,5 +55,11 @@ export const links: Link[] = [
     label: "Spotify",
     url: "https://open.spotify.com/artist/0kLse57Pg4W5UN5SeGeZxB",
     icon: "spotify",
+  },
+  {
+    id: 9,
+    label: "NetEase Music",
+    url: "https://music.163.com/#/artist?id=51616966",
+    icon: "netease",
   },
 ];

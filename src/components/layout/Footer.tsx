@@ -2,8 +2,15 @@
 import { useTranslation } from "react-i18next";
 import { Container } from "../ui/Container";
 import { links } from "../../data/links";
-import { FaGithub, FaLinkedin, FaTwitter, FaSpotify } from "react-icons/fa";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaSpotify,
+  FaQq,
+} from "react-icons/fa";
+import { SiX } from "react-icons/si";
 import { SiPixiv, SiBilibili, SiBandcamp } from "react-icons/si";
+import { RiNeteaseCloudMusicLine } from "react-icons/ri";
 import type { IconType } from "react-icons";
 
 export function Footer() {
@@ -13,11 +20,13 @@ export function Footer() {
   const ICONS: Record<string, IconType> = {
     github: FaGithub,
     linkedin: FaLinkedin,
-    twitter: FaTwitter,
+    twitter: SiX,
     pixiv: SiPixiv,
     bilibili: SiBilibili,
     bandcamp: SiBandcamp,
     spotify: FaSpotify,
+    qq: FaQq,
+    netease: RiNeteaseCloudMusicLine,
   };
 
   return (

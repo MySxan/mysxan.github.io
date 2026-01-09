@@ -15,11 +15,11 @@
     "contact": "联系"
   },
   "intro": {
-    "subtitle": "开发 & 设计"
+    "subtitle": "灵感 / 创造 / 表达"
   },
   "hero": {
-    "tagline": "全栈开发者 & 创意内容创作者",
-    "intro": "灵感/创造/表达",
+    "tagline": "全栈开发 & 创作者",
+    "intro": "用自己的方式理解这个世界",
     "skills": [
       { "label": "全栈", "sub": "React & TypeScript" },
       { "label": "UI/UX", "sub": "交互设计" },
@@ -61,21 +61,22 @@
   },
   "contact": {
     "title": "联系",
-    "description": "无论是设计交流/编曲合作/咨询委托或是单纯交友，都请随意添加 QQ 或者发送邮件联系！",
+    "description": "无论是设计交流、编曲合作、咨询委托或单纯交友，都请随意添加 QQ 或发送邮件联系！",
     "emailLabel": "邮箱",
     "telLabel": "电话",
     "connectLabel": "社交",
-    "copy": "复制",
     "copyEmailTitle": "复制邮箱地址",
     "copyEmailAria": "复制邮箱到剪贴板",
+    "copyTelTitle": "复制手机号",
+    "copyTelAria": "复制手机号到剪贴板",
     "toast": {
-      "copySuccess": "邮箱已复制到剪贴板！",
-      "copyError": "复制邮箱失败"
+      "copySuccess": "已复制到剪贴板！",
+      "copyError": "复制失败"
     }
   },
   "footer": {
     "copyright": "© {{year}} MySxan. 保留所有权利。",
-    "tagline": "以 React、TypeScript 与但愿永远燃烧的创作热情打造。"
+    "tagline": "以 React、TypeScript 与但愿永远燃烧的热情打造。"
   },
   "modal": {
     "close": "关闭弹窗"

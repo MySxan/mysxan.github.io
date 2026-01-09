@@ -72,6 +72,13 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const root = document.documentElement;
+    const isZhLang = i18n.language.startsWith("zh");
+    root.setAttribute("lang", isZhLang ? "zh" : "en");
+    root.classList.toggle("lang-zh", isZhLang);
+  }, [i18n.language]);
+
+  useEffect(() => {
     return () => {
       if (langAnimTimer.current) {
         window.clearTimeout(langAnimTimer.current);
