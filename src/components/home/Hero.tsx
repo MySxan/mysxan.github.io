@@ -14,9 +14,24 @@ export function Hero() {
       <Container>
         <div className="hero-overlay-grid">
           <div className="hero-left">
-            <img src="/img/logo.png" alt="Logo" className="hero-logo" />
-            <p className="hero-tagline">{t("hero.tagline")}</p>
-            <p className="hero-intro">{t("hero.intro")}</p>
+            <img
+              src="/img/logo.png"
+              alt="Logo"
+              className="hero-logo"
+              style={{ "--enter-delay": "0.3s" } as React.CSSProperties}
+            />
+            <p
+              className="hero-tagline"
+              style={{ "--enter-delay": "0.36s" } as React.CSSProperties}
+            >
+              {t("hero.tagline")}
+            </p>
+            <p
+              className="hero-intro"
+              style={{ "--enter-delay": "0.6s" } as React.CSSProperties}
+            >
+              {t("hero.intro")}
+            </p>
           </div>
 
           <div className="hero-right">
@@ -25,7 +40,7 @@ export function Hero() {
                 <li
                   key={`${skill.label}-${idx}`}
                   style={
-                    { "--delay": `${0.3 + idx * 0.05}s` } as React.CSSProperties
+                    { "--delay": `${0.3 + idx * 0.06}s` } as React.CSSProperties
                   }
                 >
                   <span className="skill-label">

@@ -23,15 +23,17 @@ export function Contact() {
   };
 
   return (
-    <Section id="contact" title={t("contact.title")} className="contact-section">
+    <Section
+      id="contact"
+      title={t("contact.title")}
+      className="contact-section"
+    >
       <div className="contact-wrapper">
         <div className="contact-glass-card">
           <div className="contact-layout">
             {/* Left: intro */}
             <div className="contact-intro">
-              <p className="contact-description">
-                {t("contact.description")}
-              </p>
+              <p className="contact-description">{t("contact.description")}</p>
             </div>
 
             {/* Right: contact card */}
@@ -72,7 +74,7 @@ export function Contact() {
                     217-637-3373
                   </a>
                 </div>
-
+                <div className="contact-divider" />
                 {/* Social */}
                 <div className="contact-social-section">
                   <p className="contact-field-label">

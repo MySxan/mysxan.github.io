@@ -25,6 +25,7 @@ declare global {
 export function IntroStage({ onScrollComplete, children }: IntroStageProps) {
   const { i18n, t } = useTranslation();
   const isZh = i18n.language.startsWith("zh");
+  const langAnimTimer = useRef<number | null>(null);
   const [cover, setCover] = useState(0);
   const [titleTransform, setTitleTransform] = useState(0);
   const [heroIn, setHeroIn] = useState(false);
@@ -74,7 +75,7 @@ export function IntroStage({ onScrollComplete, children }: IntroStageProps) {
           setCover(newCover);
 
           // Show navbar only when white content reaches the top
-          const shouldShowNav = contentRect.top <= 0;
+          const shouldShowNav = contentRect.top < 0;
           onScrollComplete(shouldShowNav);
 
           // Show hero title animation: either at page top initially or when white content reaches top
@@ -186,6 +187,29 @@ export function IntroStage({ onScrollComplete, children }: IntroStageProps) {
     };
   }, [onScrollComplete, heroIn]);
 
+  useEffect(() => {
+    return () => {
+      if (langAnimTimer.current) {
+        window.clearTimeout(langAnimTimer.current);
+        langAnimTimer.current = null;
+      }
+    };
+  }, []);
+
+  const triggerLangAnimation = () => {
+    const root = document.documentElement;
+    root.classList.remove("lang-change");
+    void root.offsetHeight;
+    root.classList.add("lang-change");
+    if (langAnimTimer.current) {
+      window.clearTimeout(langAnimTimer.current);
+    }
+    langAnimTimer.current = window.setTimeout(() => {
+      root.classList.remove("lang-change");
+      langAnimTimer.current = null;
+    }, 500);
+  };
+
   return (
     <div
       ref={stageRef}
@@ -223,14 +247,20 @@ export function IntroStage({ onScrollComplete, children }: IntroStageProps) {
           <div className="hero-lang-toggle">
             <button
               className={`hero-lang-btn ${!isZh ? "active" : ""}`}
-              onClick={() => i18n.changeLanguage("en")}
+              onClick={() => {
+                triggerLangAnimation();
+                i18n.changeLanguage("en");
+              }}
             >
               EN
             </button>
             <span className="hero-lang-sep">-</span>
             <button
               className={`hero-lang-btn ${isZh ? "active" : ""}`}
-              onClick={() => i18n.changeLanguage("zh")}
+              onClick={() => {
+                triggerLangAnimation();
+                i18n.changeLanguage("zh");
+              }}
             >
               ZH
             </button>

@@ -1,5 +1,5 @@
 // Main App component - single-page personal website with anchor sections
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
@@ -22,11 +22,27 @@ function App() {
   // Initialize theme
   const { theme, toggleTheme } = useTheme();
   const { i18n, t } = useTranslation();
+  const langAnimTimer = useRef<number | null>(null);
   const isZh = i18n.language.startsWith("zh");
   const currentLangLabel = isZh ? "ZH" : "EN";
   const nextLangLabel = isZh ? "EN" : "ZH";
-  const toggleLang = () =>
+  const triggerLangAnimation = () => {
+    const root = document.documentElement;
+    root.classList.remove("lang-change");
+    void root.offsetHeight;
+    root.classList.add("lang-change");
+    if (langAnimTimer.current) {
+      window.clearTimeout(langAnimTimer.current);
+    }
+    langAnimTimer.current = window.setTimeout(() => {
+      root.classList.remove("lang-change");
+      langAnimTimer.current = null;
+    }, 500);
+  };
+  const toggleLang = () => {
+    triggerLangAnimation();
     i18n.changeLanguage(isZh ? "en" : "zh");
+  };
   const [footerInView, setFooterInView] = useState(false);
 
   // Observe footer visibility to hide toggles when footer is on screen
@@ -42,6 +58,26 @@ function App() {
     );
     observer.observe(footerEl);
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.classList.add("page-enter");
+    const timer = window.setTimeout(() => {
+      document.documentElement.classList.remove("page-enter");
+    }, 1200);
+    return () => {
+      window.clearTimeout(timer);
+      document.documentElement.classList.remove("page-enter");
+    };
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (langAnimTimer.current) {
+        window.clearTimeout(langAnimTimer.current);
+        langAnimTimer.current = null;
+      }
+    };
   }, []);
 
   return (

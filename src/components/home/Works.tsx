@@ -28,12 +28,12 @@ export function Works() {
 
     if (pageWidth <= 768) {
       gap = 14;
-      cardWidth = Math.min(420, Math.round(pageWidth * 0.82));
+      cardWidth = Math.min(420, Math.round((pageWidth - gap) / 1.5));
     }
 
     if (pageWidth <= 640) {
       gap = 12;
-      cardWidth = Math.min(380, Math.round(pageWidth * 0.86));
+      cardWidth = Math.min(380, Math.round((pageWidth - gap) / 1.5));
     }
 
     cardWidth = Math.max(220, cardWidth);
