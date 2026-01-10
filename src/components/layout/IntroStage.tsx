@@ -297,7 +297,7 @@ export function IntroStage({ onScrollComplete, children }: IntroStageProps) {
       <div ref={contentRef} className="intro-content">
         <div className="seo-intro">
           <h1 className="seo-title">MySxan</h1>
-          <p className="seo-subtitle">Full-Stack Developer &amp; Music Producer</p>
+          <p className="seo-subtitle">Full-Stack Developer &amp; Creative Content Creator</p>
         </div>
         {children}
       </div>

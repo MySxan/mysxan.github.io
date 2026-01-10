@@ -23,26 +23,10 @@ export function WorkCard({ work, index, onClick }: WorkCardProps) {
   const { t } = useTranslation();
   const imageRef = useRef<HTMLImageElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
+  const config = parallaxConfigs[index % parallaxConfigs.length];
+  const { range, speed, aspectRatio, imageHeight } = config;
 
   useEffect(() => {
-    const config = parallaxConfigs[index % parallaxConfigs.length];
-    const { range, speed, aspectRatio, imageHeight } = config;
-
-    // Set aspect ratio for this specific card
-    if (cardRef.current) {
-      const imageContainer = cardRef.current.querySelector(
-        ".work-card-image"
-      ) as HTMLElement;
-      if (imageContainer) {
-        imageContainer.style.aspectRatio = aspectRatio;
-      }
-    }
-
-    // Set image height
-    if (imageRef.current) {
-      imageRef.current.style.height = `${imageHeight}%`;
-    }
-
     let ticking = false;
 
     const handleScroll = () => {
@@ -77,7 +61,7 @@ export function WorkCard({ work, index, onClick }: WorkCardProps) {
     handleScroll(); // Initial call
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [index]);
+  }, [index, range, speed]);
 
   return (
     <div
@@ -94,12 +78,13 @@ export function WorkCard({ work, index, onClick }: WorkCardProps) {
       }}
       aria-label={t("works.viewItem", { title: work.title })}
     >
-      <div className="work-card-image">
+      <div className="work-card-image" style={{ aspectRatio }}>
         <img
           ref={imageRef}
           src={work.thumbnail}
           alt={work.title}
           loading="lazy"
+          style={{ height: `${imageHeight}%` }}
         />
         <div className="work-overlay">
           <span className="overlay-text">{t("works.view")}</span>

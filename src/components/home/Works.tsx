@@ -15,6 +15,8 @@ export function Works() {
   const [isAtStart, setIsAtStart] = useState(true);
   const [dotCount, setDotCount] = useState(0);
   const [maxScroll, setMaxScroll] = useState(0);
+  const scrollRafRef = useRef<number | null>(null);
+  const restoredRef = useRef(false);
 
   const getLayoutMetrics = () => {
     const pageWidth = window.innerWidth;
@@ -45,10 +47,7 @@ export function Works() {
   const getMaxDotIndex = () => (dotCount > 0 ? dotCount - 1 : 0);
 
   useEffect(() => {
-    const layoutMasonry = () => {
-      if (!gridRef.current) return;
-
-      const grid = gridRef.current;
+    const layoutMasonry = (grid: HTMLDivElement) => {
       const items = Array.from(grid.children).filter(
         (child) => !child.classList.contains("works-spacer")
       ) as HTMLElement[];
@@ -119,17 +118,34 @@ export function Works() {
       // Clamp active dot if needed
       const maxDotIndex = Math.max(0, newDotCount - 1);
       setActiveColumn((prev) => Math.min(prev, maxDotIndex));
+      if (!restoredRef.current) {
+        const savedScroll = Number(
+          window.sessionStorage.getItem("works-scroll") ?? 0
+        );
+        const savedColumn = Number(
+          window.sessionStorage.getItem("works-column") ?? 0
+        );
+        const targetScroll = Math.min(savedScroll, maxScrollValue);
+        grid.scrollLeft = targetScroll;
+        const computedColumn = Math.floor(
+          (targetScroll + columnWidth / 2) / columnWidth
+        );
+        setActiveColumn(Math.min(savedColumn || computedColumn, maxDotIndex));
+        restoredRef.current = true;
+      }
     };
 
     // Layout after images load and on resize
     const handleResize = () => {
-      setTimeout(layoutMasonry, 100);
+      if (!gridRef.current) return;
+      requestAnimationFrame(() => layoutMasonry(gridRef.current as HTMLDivElement));
     };
 
-    // Initial layout with delay to ensure images are measured
-    setTimeout(layoutMasonry, 800);
-    // Re-layout after images load
-    setTimeout(layoutMasonry, 2000);
+    if (gridRef.current) {
+      requestAnimationFrame(() =>
+        layoutMasonry(gridRef.current as HTMLDivElement)
+      );
+    }
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -158,6 +174,8 @@ export function Works() {
       const columnWidth = getColumnWidth();
       const scrollAmount = Math.min(columnIndex * columnWidth, maxScroll);
       gridRef.current.scrollTo({ left: scrollAmount, behavior: "smooth" });
+      window.sessionStorage.setItem("works-column", String(columnIndex));
+      window.sessionStorage.setItem("works-scroll", String(scrollAmount));
     }
   };
 
@@ -231,6 +249,17 @@ export function Works() {
       );
       const maxDotIndex = getMaxDotIndex();
       setActiveColumn(Math.min(currentColumn, maxDotIndex));
+
+      if (scrollRafRef.current != null) {
+        window.cancelAnimationFrame(scrollRafRef.current);
+      }
+      scrollRafRef.current = window.requestAnimationFrame(() => {
+        window.sessionStorage.setItem("works-scroll", String(scrollLeft));
+        window.sessionStorage.setItem(
+          "works-column",
+          String(Math.min(currentColumn, maxDotIndex))
+        );
+      });
 
       // Debounce the scroll limiting to avoid interrupting momentum
       if (scrollTimeoutRef.current) {
