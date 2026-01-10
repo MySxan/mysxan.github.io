@@ -237,7 +237,7 @@ export function IntroStage({ onScrollComplete, children }: IntroStageProps) {
         className="title-layer"
         style={{ transform: `translateY(${titleTransform}px)` }}
       >
-        <h1 className="site-title" aria-label="MYSXAN">
+        <div className="site-title" aria-hidden="true">
           {Array.from("MYSXAN").map((ch, idx) => (
             <span
               className="letter"
@@ -249,7 +249,7 @@ export function IntroStage({ onScrollComplete, children }: IntroStageProps) {
               <span>{ch}</span>
             </span>
           ))}
-        </h1>
+        </div>
         <div className="subtitle-row">
           <p className="site-subtitle">
             {t("intro.subtitle")
