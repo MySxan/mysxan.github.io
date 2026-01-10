@@ -37,7 +37,7 @@ const polarPoint = (
   centerX: number,
   centerY: number,
   radius: number,
-  angle: number
+  angle: number,
 ) => ({
   x: centerX + radius * Math.cos(toRad(angle)),
   y: centerY + radius * Math.sin(toRad(angle)),
@@ -100,7 +100,7 @@ export function OrbitTimeline({ milestones }: OrbitTimelineProps) {
     const chord = Math.max(0, size.width - EDGE_PADDING * 2);
     const baseRadius = Math.max(
       0,
-      chord / (2 * Math.sin(spanRad / 2)) - indicatorRingOffset
+      chord / (2 * Math.sin(spanRad / 2)) - indicatorRingOffset,
     );
     const outerRadius = baseRadius * scale;
     const ringGap = RING_GAP * scale;
@@ -153,7 +153,7 @@ export function OrbitTimeline({ milestones }: OrbitTimelineProps) {
       const radiusWithIndicator = Math.max(0, radius + indicatorRingOffset);
       const height = Math.max(
         MIN_HEIGHT,
-        Math.round(radiusWithIndicator + EXTRA_LABEL_PADDING + BOTTOM_PADDING)
+        Math.round(radiusWithIndicator + EXTRA_LABEL_PADDING + BOTTOM_PADDING),
       );
       setArcSpan(span);
       setSize({ width, height });
@@ -168,29 +168,44 @@ export function OrbitTimeline({ milestones }: OrbitTimelineProps) {
   useEffect(() => {
     const element = orbitRef.current;
     if (!element) return;
+    const markEntered = () => {
+      setIsInView(true);
+      if (!hasEnteredRef.current) {
+        hasEnteredRef.current = true;
+        window.setTimeout(() => setHasEntered(true), 620);
+      }
+    };
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
         if (entry.isIntersecting) {
-          setIsInView(true);
-          if (!hasEnteredRef.current) {
-            hasEnteredRef.current = true;
-            window.setTimeout(() => setHasEntered(true), 620);
-          }
+          markEntered();
           observer.disconnect();
         }
       },
-      { threshold: 0.35 }
+      { threshold: 0.35 },
     );
     observer.observe(element);
-    return () => observer.disconnect();
+    const checkVisible = () => {
+      const rect = element.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.85 && rect.bottom > 0) {
+        markEntered();
+      }
+    };
+    requestAnimationFrame(checkVisible);
+    window.setTimeout(checkVisible, 0);
+    window.addEventListener("pageshow", checkVisible);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("pageshow", checkVisible);
+    };
   }, []);
 
   const active =
     milestones.find((item) => item.id === activeId) ?? milestones[0];
   const previous =
     previousId != null
-      ? milestones.find((item) => item.id === previousId) ?? null
+      ? (milestones.find((item) => item.id === previousId) ?? null)
       : null;
 
   const orbitData = useMemo(() => {
@@ -203,7 +218,7 @@ export function OrbitTimeline({ milestones }: OrbitTimelineProps) {
     };
     const monthStep = (geometry.endAngle - geometry.startAngle) / 12;
     const years = Array.from(new Set(milestones.map((item) => item.year))).sort(
-      (a, b) => a - b
+      (a, b) => a - b,
     );
     const yearStep = years.length
       ? (geometry.endAngle - geometry.startAngle) / years.length
@@ -280,7 +295,7 @@ export function OrbitTimeline({ milestones }: OrbitTimelineProps) {
       indicatorRadius,
     } = geometry;
     const years = Array.from(new Set(milestones.map((item) => item.year))).sort(
-      (a, b) => a - b
+      (a, b) => a - b,
     );
     const yearStep = years.length ? (endAngle - startAngle) / years.length : 0;
     const yearTicks = Array.from({ length: years.length + 1 }, (_, index) => ({
@@ -358,7 +373,7 @@ export function OrbitTimeline({ milestones }: OrbitTimelineProps) {
     orbitData.find((item) => item.id === activeId) ?? orbitData[0];
   const hoveredOrbit = orbitData.find((item) => item.id === hoveredId) ?? null;
   const activeYearSegment = ticks.yearSegments.find(
-    (segment) => segment.year === activeOrbit?.year
+    (segment) => segment.year === activeOrbit?.year,
   );
   const monthRotation =
     activeOrbit != null ? activeOrbit.angle - activeOrbit.monthAngle : 0;
@@ -399,7 +414,7 @@ export function OrbitTimeline({ milestones }: OrbitTimelineProps) {
       while (adjusted > ticks.endAngle) adjusted -= span;
       return adjusted;
     },
-    [ticks.endAngle, ticks.startAngle]
+    [ticks.endAngle, ticks.startAngle],
   );
 
   useEffect(() => {

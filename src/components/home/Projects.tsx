@@ -179,11 +179,11 @@ export function Projects() {
                       {project.year}
                     </div>
                   </button>
-                {isActive && (
-                  <div id={`project-detail-${project.id}`} key={project.id}>
-                    {renderMobileDetail(project)}
-                  </div>
-                )}
+                  {isActive && (
+                    <div id={`project-detail-${project.id}`} key={project.id}>
+                      {renderMobileDetail(project)}
+                    </div>
+                  )}
                 </div>
               );
             }

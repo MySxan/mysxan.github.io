@@ -66,7 +66,10 @@ export function Contact() {
             {/* Left: intro */}
             <div className="contact-intro">
               <p className="contact-description">
-                <Trans i18nKey="contact.description" components={{ br: <br /> }} />
+                <Trans
+                  i18nKey="contact.description"
+                  components={{ br: <br /> }}
+                />
               </p>
               <div className="contact-divider contact-divider-intro" />
               <div className="contact-social-section contact-social-intro">
@@ -156,7 +159,6 @@ export function Contact() {
                     ))}
                   </div>
                 </div>
-                
               </div>
             </div>
           </div>

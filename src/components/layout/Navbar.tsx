@@ -51,7 +51,7 @@ export function Navbar({ className = "" }: NavbarProps) {
 
     const observer = new IntersectionObserver(
       observerCallback,
-      observerOptions
+      observerOptions,
     );
 
     // Observe all sections
@@ -195,7 +195,9 @@ export function Navbar({ className = "" }: NavbarProps) {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className={activeSection === link.href.slice(1) ? "active" : ""}
+                  className={
+                    activeSection === link.href.slice(1) ? "active" : ""
+                  }
                 >
                   {link.label}
                 </a>
@@ -236,7 +238,9 @@ export function Navbar({ className = "" }: NavbarProps) {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className={activeSection === link.href.slice(1) ? "active" : ""}
+                  className={
+                    activeSection === link.href.slice(1) ? "active" : ""
+                  }
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.label}

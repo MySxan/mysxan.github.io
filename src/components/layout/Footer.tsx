@@ -34,9 +34,7 @@ export function Footer() {
             <p className="footer-copyright">
               {t("footer.copyright", { year: currentYear })}
             </p>
-            <p className="footer-tagline">
-              {t("footer.tagline")}
-            </p>
+            <p className="footer-tagline">{t("footer.tagline")}</p>
           </div>
 
           <div className="footer-social">

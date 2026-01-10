@@ -12,7 +12,7 @@ interface IntroStageProps {
 interface LenisInstance {
   scrollTo: (
     target: number,
-    options?: { duration?: number; lock?: boolean }
+    options?: { duration?: number; lock?: boolean },
   ) => void;
 }
 
@@ -61,7 +61,7 @@ export function IntroStage({ onScrollComplete, children }: IntroStageProps) {
           // Calculate scroll progress through IntroStage
           const progress = Math.max(
             0,
-            Math.min(1, -rect.top / (stageHeight - windowHeight))
+            Math.min(1, -rect.top / (stageHeight - windowHeight)),
           );
 
           // Cover mapping: starts at 10%, completes at 55%
@@ -69,7 +69,7 @@ export function IntroStage({ onScrollComplete, children }: IntroStageProps) {
           const coverEnd = 0.55;
           const newCover = Math.max(
             0,
-            Math.min(1, (progress - coverStart) / (coverEnd - coverStart))
+            Math.min(1, (progress - coverStart) / (coverEnd - coverStart)),
           );
 
           setCover(newCover);
@@ -174,16 +174,24 @@ export function IntroStage({ onScrollComplete, children }: IntroStageProps) {
       passive: false,
     });
 
-    // Use requestAnimationFrame to ensure DOM is fully rendered before calculating initial position
-    requestAnimationFrame(() => {
-      handleScroll(); // Initial call - this will set heroIn and titleTransform correctly
-    });
+    const runInitialCheck = () => {
+      requestAnimationFrame(() => {
+        handleScroll();
+      });
+    };
+
+    // Ensure initial state after layout and scroll restoration.
+    runInitialCheck();
+    window.addEventListener("load", runInitialCheck);
+    window.addEventListener("pageshow", runInitialCheck);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("wheel", handleWheelCapture, {
         capture: true,
       } as unknown as EventListenerOptions);
+      window.removeEventListener("load", runInitialCheck);
+      window.removeEventListener("pageshow", runInitialCheck);
     };
   }, [onScrollComplete, heroIn]);
 
@@ -297,7 +305,9 @@ export function IntroStage({ onScrollComplete, children }: IntroStageProps) {
       <div ref={contentRef} className="intro-content">
         <div className="seo-intro">
           <h1 className="seo-title">MySxan</h1>
-          <p className="seo-subtitle">Full-Stack Developer &amp; Creative Content Creator</p>
+          <p className="seo-subtitle">
+            Full-Stack Developer &amp; Creative Content Creator
+          </p>
         </div>
         {children}
       </div>

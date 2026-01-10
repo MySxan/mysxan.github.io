@@ -1,5 +1,5 @@
 // Works section component - showcases work experience and portfolio items
-import { useState, useEffect, useRef } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Section } from "../ui/Section";
 import { WorkCard } from "../ui/WorkCard";
@@ -11,12 +11,30 @@ export function Works() {
   const { t } = useTranslation();
   const [selectedWork, setSelectedWork] = useState<Work | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
   const [activeColumn, setActiveColumn] = useState(0);
   const [isAtStart, setIsAtStart] = useState(true);
   const [dotCount, setDotCount] = useState(0);
   const [maxScroll, setMaxScroll] = useState(0);
   const scrollRafRef = useRef<number | null>(null);
   const restoredRef = useRef(false);
+  const parallaxConfigs = useMemo(
+    () => [
+      { range: 35, speed: 1.2, aspectRatio: "3/4", imageHeight: 160 },
+      { range: 40, speed: 0.9, aspectRatio: "16/9", imageHeight: 150 },
+      { range: 30, speed: 1.4, aspectRatio: "1/1", imageHeight: 145 },
+      { range: 38, speed: 1.0, aspectRatio: "4/3", imageHeight: 155 },
+      { range: 32, speed: 1.3, aspectRatio: "5/4", imageHeight: 148 },
+      { range: 42, speed: 0.8, aspectRatio: "21/9", imageHeight: 165 },
+    ],
+    [],
+  );
+  const parallaxMap = useMemo(
+    () =>
+      works.map((_, index) => parallaxConfigs[index % parallaxConfigs.length]),
+    [parallaxConfigs],
+  );
 
   const getLayoutMetrics = () => {
     const pageWidth = window.innerWidth;
@@ -49,7 +67,7 @@ export function Works() {
   useEffect(() => {
     const layoutMasonry = (grid: HTMLDivElement) => {
       const items = Array.from(grid.children).filter(
-        (child) => !child.classList.contains("works-spacer")
+        (child) => !child.classList.contains("works-spacer"),
       ) as HTMLElement[];
       const { gap, cardWidth, columnWidth } = getLayoutMetrics();
 
@@ -90,7 +108,7 @@ export function Works() {
       // Calculate how many columns can actually fit in the visible width
       const computedVisibleColumns = Math.max(
         1,
-        Math.floor(visibleWidth / columnWidth)
+        Math.floor(visibleWidth / columnWidth),
       );
 
       // Add an end spacer so when at the last column, the right side shows blank space
@@ -120,15 +138,15 @@ export function Works() {
       setActiveColumn((prev) => Math.min(prev, maxDotIndex));
       if (!restoredRef.current) {
         const savedScroll = Number(
-          window.sessionStorage.getItem("works-scroll") ?? 0
+          window.sessionStorage.getItem("works-scroll") ?? 0,
         );
         const savedColumn = Number(
-          window.sessionStorage.getItem("works-column") ?? 0
+          window.sessionStorage.getItem("works-column") ?? 0,
         );
         const targetScroll = Math.min(savedScroll, maxScrollValue);
         grid.scrollLeft = targetScroll;
         const computedColumn = Math.floor(
-          (targetScroll + columnWidth / 2) / columnWidth
+          (targetScroll + columnWidth / 2) / columnWidth,
         );
         setActiveColumn(Math.min(savedColumn || computedColumn, maxDotIndex));
         restoredRef.current = true;
@@ -138,18 +156,99 @@ export function Works() {
     // Layout after images load and on resize
     const handleResize = () => {
       if (!gridRef.current) return;
-      requestAnimationFrame(() => layoutMasonry(gridRef.current as HTMLDivElement));
+      requestAnimationFrame(() =>
+        layoutMasonry(gridRef.current as HTMLDivElement),
+      );
     };
 
     if (gridRef.current) {
       requestAnimationFrame(() =>
-        layoutMasonry(gridRef.current as HTMLDivElement)
+        layoutMasonry(gridRef.current as HTMLDivElement),
       );
     }
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    let ticking = false;
+    let isActive = false;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
+    const resetParallax = () => {
+      imageRefs.current.forEach((image) => {
+        if (image) {
+          image.style.transform = "";
+        }
+      });
+    };
+
+    const handleScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        const windowHeight = window.innerHeight;
+        parallaxMap.forEach((config, index) => {
+          const card = cardRefs.current[index];
+          const image = imageRefs.current[index];
+          if (!card || !image) return;
+          const rect = card.getBoundingClientRect();
+          if (rect.top < windowHeight && rect.bottom > 0) {
+            const scrollProgress =
+              (windowHeight - rect.top) / (windowHeight + rect.height);
+            const startPos = -config.range;
+            const translateY =
+              startPos + scrollProgress * config.range * config.speed;
+            image.style.transform = `translateY(${translateY}%)`;
+          }
+        });
+        ticking = false;
+      });
+    };
+
+    const setActive = (nextActive: boolean) => {
+      if (nextActive === isActive) return;
+      isActive = nextActive;
+      if (isActive) {
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        window.addEventListener("resize", handleScroll, { passive: true });
+        handleScroll();
+      } else {
+        window.removeEventListener("scroll", handleScroll);
+        window.removeEventListener("resize", handleScroll);
+      }
+    };
+
+    if (prefersReducedMotion.matches) {
+      resetParallax();
+      return () => {
+        resetParallax();
+      };
+    }
+
+    const target = gridRef.current;
+    if (!target) {
+      setActive(true);
+      return () => {
+        setActive(false);
+      };
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        setActive(entry.isIntersecting);
+      },
+      { threshold: 0.1 },
+    );
+    observer.observe(target);
+    return () => {
+      setActive(false);
+      observer.disconnect();
+    };
+  }, [parallaxMap]);
 
   const handleScrollLeft = () => {
     if (gridRef.current) {
@@ -163,7 +262,7 @@ export function Works() {
       const columnWidth = getColumnWidth();
       const target = Math.min(
         gridRef.current.scrollLeft + columnWidth,
-        maxScroll
+        maxScroll,
       );
       gridRef.current.scrollTo({ left: target, behavior: "smooth" });
     }
@@ -245,7 +344,7 @@ export function Works() {
       // Calculate current column based on scroll position
       const columnWidth = getColumnWidth();
       const currentColumn = Math.floor(
-        (scrollLeft + columnWidth / 2) / columnWidth
+        (scrollLeft + columnWidth / 2) / columnWidth,
       );
       const maxDotIndex = getMaxDotIndex();
       setActiveColumn(Math.min(currentColumn, maxDotIndex));
@@ -257,7 +356,7 @@ export function Works() {
         window.sessionStorage.setItem("works-scroll", String(scrollLeft));
         window.sessionStorage.setItem(
           "works-column",
-          String(Math.min(currentColumn, maxDotIndex))
+          String(Math.min(currentColumn, maxDotIndex)),
         );
       });
 
@@ -276,6 +375,20 @@ export function Works() {
   const handleWheel = () => {
     // Let browser handle both vertical (page) and horizontal (grid) scrolling naturally
   };
+
+  // Cleanup any pending timers/RAF on unmount to avoid lingering callbacks
+  useEffect(() => {
+    return () => {
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+        scrollTimeoutRef.current = null;
+      }
+      if (scrollRafRef.current != null) {
+        window.cancelAnimationFrame(scrollRafRef.current);
+        scrollRafRef.current = null;
+      }
+    };
+  }, []);
 
   return (
     <>
@@ -296,14 +409,24 @@ export function Works() {
                 onMouseUp={handleMouseUp}
                 onMouseMove={handleMouseMove}
               >
-                {works.map((work, index) => (
-                  <WorkCard
-                    key={work.id}
-                    work={work}
-                    index={index}
-                    onClick={() => handleCardClick(work)}
-                  />
-                ))}
+                {works.map((work, index) => {
+                  const config = parallaxMap[index];
+                  return (
+                    <WorkCard
+                      key={work.id}
+                      work={work}
+                      aspectRatio={config.aspectRatio}
+                      imageHeight={config.imageHeight}
+                      setCardRef={(el) => {
+                        cardRefs.current[index] = el;
+                      }}
+                      setImageRef={(el) => {
+                        imageRefs.current[index] = el;
+                      }}
+                      onClick={() => handleCardClick(work)}
+                    />
+                  );
+                })}
                 {/* Spacer to ensure right-side blank area exists when at last column */}
                 <div className="works-spacer" aria-hidden="true" />
               </div>

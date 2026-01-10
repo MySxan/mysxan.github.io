@@ -141,19 +141,13 @@ export const showcaseProjects: ShowcaseProject[] = [
     id: "ai-translator-extension",
     title: "AI Translator Extension",
     year: "2025",
-    oneLiner:
-      "Chrome extension for AI-powered translation.",
+    oneLiner: "Chrome extension for AI-powered translation.",
     highlights: [
       "Background service worker handles translate requests via messaging",
       "Popup UI for quick interaction and a dedicated settings page",
       "Standard Chrome extension packaging via manifest.json",
     ],
-    tags: [
-      "JavaScript",
-      "Chrome Extension",
-      "Manifest V3",
-      "API Integration",
-    ],
+    tags: ["JavaScript", "Chrome Extension", "Manifest V3", "API Integration"],
     links: [
       {
         label: "Repository",

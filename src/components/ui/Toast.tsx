@@ -78,6 +78,6 @@ export function Toast({
         <span className="toast-message">{message}</span>
       </div>
     </div>,
-    document.body
+    document.body,
   );
 }

@@ -54,7 +54,7 @@ function App() {
         const entry = entries[0];
         setFooterInView(entry.isIntersecting);
       },
-      { root: null, threshold: 0.1 }
+      { root: null, threshold: 0.1 },
     );
     observer.observe(footerEl);
     return () => observer.disconnect();
