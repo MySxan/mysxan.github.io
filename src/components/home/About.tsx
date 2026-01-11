@@ -33,7 +33,7 @@ export function About() {
       {/* Skills cards */}
       <div className="about-skills">
         {skills.map((group) => (
-          <div className="about-skill-card" key={group.category}>
+          <div className="about-skill-card" key={group.categoryKey}>
             <SkillGroup group={group} />
           </div>
         ))}
