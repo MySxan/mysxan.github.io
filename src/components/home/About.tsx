@@ -1,5 +1,5 @@
 ﻿// About section component - personal information, skills, and timeline
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { Section } from "../ui/Section";
 import { SkillGroup } from "../ui/SkillGroup";
 import { Timeline } from "../ui/Timeline";
@@ -16,19 +16,27 @@ export function About() {
 
   return (
     <Section id="about" title={t("about.title")} className="about-section">
-      {/* Split layout: Bio + Skills */}
+      {/* Top bio block */}
       <div className="about-content">
         <div className="about-bio">
           {paragraphList.map((paragraph, index) => (
-            <p key={`${index}-${paragraph.slice(0, 16)}`}>{paragraph}</p>
+            <p key={`${index}-${paragraph.slice(0, 16)}`}>
+              <Trans
+                i18nKey={`about.paragraphs.${index}`}
+                components={{ strong: <strong /> }}
+              />
+            </p>
           ))}
         </div>
+      </div>
 
-        <div className="about-skills">
-          {skills.map((group) => (
-            <SkillGroup key={group.category} group={group} />
-          ))}
-        </div>
+      {/* Skills cards */}
+      <div className="about-skills">
+        {skills.map((group) => (
+          <div className="about-skill-card" key={group.category}>
+            <SkillGroup group={group} />
+          </div>
+        ))}
       </div>
 
       {/* Timeline */}

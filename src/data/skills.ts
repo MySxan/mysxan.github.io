@@ -1,48 +1,49 @@
 // Skills data with categories
-export interface Skill {
-  name: string;
-}
-
 export interface SkillCategory {
-  category: string;
-  skills: Skill[];
+  categoryKey: string;
+  descriptionKey: string;
+  skillKeys: string[];
 }
 
 export const skills: SkillCategory[] = [
   {
-    category: "Frontend",
-    skills: [
-      { name: "React" },
-      { name: "TypeScript" },
-      { name: "JavaScript" },
-      { name: "Vite" },
-      { name: "Tailwind CSS" },
-      { name: "HTML/CSS" },
-      { name: "Responsive Design" },
-      { name: "Component-based UI" },
+    categoryKey: "aboutSkills.engineering.title",
+    descriptionKey: "aboutSkills.engineering.description",
+    skillKeys: [
+      "react",
+      "typescript",
+      "c++",
+      "python",
+      "java",
+      "vite",
+      "tailwind CSS",
+      "aboutSkills.engineering.skills.responsive",
     ],
   },
   {
-    category: "UI/UX & Design",
-    skills: [
-      { name: "MasterGo" },
-      { name: "Figma" },
-      { name: "Adobe Illustrator" },
-      { name: "Photoshop" },
-      { name: "After Effects" },
-      { name: "Fontlab" },
-      { name: "Accessibility" },
+    categoryKey: "aboutSkills.visual.title",
+    descriptionKey: "aboutSkills.visual.description",
+    skillKeys: [
+      "figma",
+      "mastergo",
+      "illustrator",
+      "affinity",
+      "fontlab",
+      "TouchDesigner",
+      "aboutSkills.visual.skills.interactive",
     ],
   },
   {
-    category: "Creative",
-    skills: [
-      { name: "GFX" },
-      { name: "Illustrator" },
-      { name: "Blender" },
-      { name: "Procreate" },
-      { name: "FL Studio" },
-      { name: "Soundtrack" },
+    categoryKey: "aboutSkills.creative.title",
+    descriptionKey: "aboutSkills.creative.description",
+    skillKeys: [
+      "blender",
+      "affinity",
+      "procreate",
+      "Photoshop",
+      "fl studio",
+      "aboutSkills.creative.skills.transcription",
+      "aboutSkills.creative.skills.soundtrack",
     ],
   },
 ];

@@ -38,8 +38,27 @@ const raf = (time: number) => {
 
 requestAnimationFrame(raf);
 
-createRoot(document.getElementById("root")!).render(
+const rootElement = document.getElementById("root")!;
+const bootLoader = document.getElementById("boot-loader");
+
+createRoot(rootElement).render(
   <StrictMode>
     <App />
   </StrictMode>,
 );
+
+if (bootLoader) {
+  const storage = window.sessionStorage;
+  const hasShown = storage.getItem("boot-loader-shown") === "true";
+  if (hasShown) {
+    bootLoader.remove();
+  } else {
+    storage.setItem("boot-loader-shown", "true");
+    window.setTimeout(() => {
+      bootLoader.classList.add("boot-loader--hide");
+      window.setTimeout(() => {
+        bootLoader.remove();
+      }, 400);
+    }, 1200);
+  }
+}

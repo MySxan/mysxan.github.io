@@ -21,11 +21,26 @@
     "tagline": "FULL STACK DEVELOPER & CREATIVE CONTENT CREATOR",
     "intro": "EXPRESS MY UNDERSTANDING OF THE WORLD THROUGH MY WORK",
     "skills": [
-      { "label": "Full Stack", "sub": "React & TypeScript" },
-      { "label": "UI/UX", "sub": "Interactive Design" },
-      { "label": "Design", "sub": "Logo & Font" },
-      { "label": "GFX & ILLUST.", "sub": "ALBUM & BANNER & POSTER" },
-      { "label": "Composition", "sub": "DnB & Prog. House & ARTCORE" }
+      {
+        "label": "Full Stack",
+        "sub": "React & TypeScript"
+      },
+      {
+        "label": "UI/UX",
+        "sub": "Interactive Design"
+      },
+      {
+        "label": "Design",
+        "sub": "Logo & Font"
+      },
+      {
+        "label": "GFX & ILLUST.",
+        "sub": "ALBUM & BANNER & POSTER"
+      },
+      {
+        "label": "Composition",
+        "sub": "DnB & Prog. House & ARTCORE"
+      }
     ]
   },
   "info": {
@@ -61,10 +76,35 @@
     "title": "About Me",
     "timelineTitle": "Journey",
     "paragraphs": [
-      "ご理解いただき大変痛み入ります……！ また、お送りするタイミングにつきましても承知いたしました。 つきましては、全体像あるいはある程度の方向性が見える段階まで書き進めましたら、デモとして共有いたします。 引き続きお手数をおかけしますが、何卒よろしくお願いいたします。 （どうぞ良いお年をお迎えください🙇‍♂️ ）",
-      "男生超级扣分的行为，快来看看自己中了几条: 1.不定积分结果不加常数C 2.定积分换元时忘记更换积分上下限 3.滥用洛必达法则 4.求复合函数导数时遗漏链式法则项 5.判别级数敛散性误用判别法 6.计算行列式或逆矩阵时遗漏代数余子式的符号 7.混淆偏导数与全导数 8.分部积分法中u和dv选择不当 9.在加减运算中误用等价无穷小 10.解非齐次微分方程时遗漏特解",
-      "是的，最后B站在一起了，学习在一起了，跨年在一起了，印第安在一起了，学业在一起了，洞察在一起了，笔盒在一起了."
+      "I’m <strong>MySxan</strong>, a sophomore at UIUC studying CS + GGIS, and an interest-driven full-stack developer and creative content creator. I put real time into UI/UX, performance, and interaction details — so an interface isn’t just presenting information, but truly engaging with the user.",
+      "In both learning and creation, I’m always chasing a better version of the work, using an interdisciplinary mindset to solve problems. My work sits at the intersection of engineering and art — from web apps and tools, to visual design, illustration, and music composition. I enjoy breaking complex problems into clean, modular pieces, then refining each part until it feels “right.”",
+      "Recently, I’ve been building a course-planning web app for schedule preview and optimization, along with smaller utilities that improve everyday workflows. I also create music (DnB / Progressive House / Artcore) and illustrations, and I like merging these practices into a unified creative language.",
+      "If you’re looking for interdisciplinary thinking, or want to collaborate / commission work, feel free to reach out."
     ]
+  },
+  "aboutSkills": {
+    "engineering": {
+      "title": "Engineering",
+      "description": "Frontend systems with scalable UI architecture.",
+      "skills": {
+        "responsive": "Responsive"
+      }
+    },
+    "visual": {
+      "title": "UI & Visual",
+      "description": "Visual design tools, systems, and accessibility.",
+      "skills": {
+        "interactive": "interactive"
+      }
+    },
+    "creative": {
+      "title": "Creative",
+      "description": "3D, illustration, and audio production workflows.",
+      "skills": {
+        "soundtrack": "Soundtrack",
+        "transcription": "Transcription"
+      }
+    }
   },
   "contact": {
     "title": "Contact",
@@ -82,7 +122,7 @@
       "bandcamp": "Bandcamp",
       "spotify": "Spotify",
       "netease": "NetEase Music",
-      "xiaohongshu": "Xiaohongshu",
+      "xiaohongshu": "RedNote",
       "mihuashi": "Mihuashi"
     },
     "copyEmailTitle": "Copy email address",
