@@ -55,6 +55,56 @@
       "caseStudy": "案例研究",
       "website": "官方网站",
       "tapTap": "TapTap"
+    },
+    "items": {
+      "phigrim": {
+        "oneLiner": "移动端社区节奏游戏，支持谱面发现、下载与安装，且已接入 PhiZone 谱面社区。",
+        "highlights": [
+          "设计谱面发现与安装的完整 UI",
+          "构建统一风格的模块化 UI 组件",
+          "担任美术组长，提供注重交互性的设计稿与艺术指导"
+        ]
+      },
+      "arxsbot": {
+        "oneLiner": "基于 pnpm + Vitest 的 TypeScript 多平台聊天机器人项目。",
+        "highlights": [
+          "TypeScript 代码结构划分为 config/、src/、tests/",
+          "pnpm workspace 支持多包/模块化扩展",
+          "Vitest 配置的可测试化基础"
+        ]
+      },
+      "wordleHelper": {
+        "oneLiner": "基于 React 的 Wordle 辅助工具，可按猜测反馈筛选候选词。",
+        "highlights": [
+          "实时输入与退格编辑",
+          "绿/黄/灰反馈用于筛选",
+          "候选词剩余一个时显示释义"
+        ]
+      },
+      "courseScheduler": {
+        "oneLiner": "用于构建与导出周课表的 Web 选课排课工具。",
+        "highlights": [
+          "可配置时间范围的可视化周课表",
+          "CSV 导入批量课程",
+          "导出课表为 PNG"
+        ]
+      },
+      "uniscraper": {
+        "oneLiner": "多源大学排名抓取与合并工具，去重并输出统一 CSV。",
+        "highlights": [
+          "抓取 QS/THE/US News",
+          "合并脚本含去重规则避免误合",
+          "生成 CSV 与日志便于追踪"
+        ]
+      },
+      "aiTranslator": {
+        "oneLiner": "AI 翻译 Chrome 扩展。",
+        "highlights": [
+          "后台 service worker 通过消息处理翻译请求",
+          "弹窗 UI 快速交互 + 独立设置页",
+          "基于 manifest.json 的标准打包"
+        ]
+      }
     }
   },
   "works": {
@@ -77,7 +127,7 @@
     "timelineTitle": "历程",
     "paragraphs": [
       "我是 <strong>MySxan</strong>，或者你所熟知的 <strong>麦姗</strong> 或者 <strong>MS</strong>，在 <strong>UIUC</strong> 学习 <strong>CS + GGIS</strong> 的大二学生，也是一名兴趣驱动的全栈开发者与创意内容创作者。我愿意把时间花在 UI/UX、性能与交互细节上——让界面不只是信息的展示，而是能真正与用户产生互动的体验。",
-      "无论是学习还是创作，我都习惯以“追求更好”为目标，并以跨学科的视角去解决问题。我的作品横跨工程与艺术：从 Web 应用与工具开发，到平面 / 视觉设计、插画与编曲。我喜欢把复杂的问题拆解成清晰的小模块，再把每个模块打磨到我认为足够完善的状态。",
+      "无论是学习还是创作，我都习惯以“追求完美”为目标，并以跨学科的视角去解决问题。我的作品横跨工程与艺术：从 Web 应用与工具开发，到平面 / 视觉设计、插画与编曲。我喜欢把复杂的问题拆解成清晰的小模块，再把每个部分打磨到我认为足够完美的状态。",
       "近期项目包括用于选课与排课预览的课程规划 Web App，以及一些提升日常效率的小工具。同时我也在进行音乐创作（DnB / Progressive House / Artcore）与插画绘制，并尝试把它们融合成统一的创作语言。",
       "如果你需要这种跨学科思维，或希望合作 / 委托，欢迎联系我。"
     ]
@@ -91,7 +141,7 @@
       }
     },
     "visual": {
-      "title": "视觉与设计",
+      "title": "视觉设计",
       "description": "设计工具、视觉系统与可访问性。",
       "skills": {
         "interactive": "交互"

@@ -55,6 +55,56 @@
       "caseStudy": "Case Study",
       "website": "Website",
       "tapTap": "TapTap"
+    },
+    "items": {
+      "phigrim": {
+        "oneLiner": "Mobile community rhythm game with in-game chart discovery, download, and installation, integrated with the PhiZone chart community.",
+        "highlights": [
+          "Designed the full UI for chart discovery and installation",
+          "Built a unified set of modular UI components",
+          "Led art direction with interaction-focused designs"
+        ]
+      },
+      "arxsbot": {
+        "oneLiner": "A TypeScript multiplatform chat bot project using pnpm + Vitest.",
+        "highlights": [
+          "TypeScript codebase with separated config/, src/, and tests/ structure",
+          "pnpm workspace setup for multi-package / modular growth",
+          "Test-ready setup via Vitest config"
+        ]
+      },
+      "wordleHelper": {
+        "oneLiner": "React-based Wordle helper that filters candidates based on guess feedback.",
+        "highlights": [
+          "Real-time input with backspace editing for guesses",
+          "Color-coded feedback (green/yellow/gray) to refine results",
+          "Filters possible words and shows a definition when one remains"
+        ]
+      },
+      "courseScheduler": {
+        "oneLiner": "Web-based course scheduling app for building and exporting weekly timetables.",
+        "highlights": [
+          "Visual weekly timetable with configurable time ranges",
+          "CSV import for bulk course setup",
+          "Export schedules as PNG images"
+        ]
+      },
+      "uniscraper": {
+        "oneLiner": "Multi-source university ranking scraper + merger that deduplicates and outputs unified CSV datasets.",
+        "highlights": [
+          "Scrapes QS, THE, and US News rankings",
+          "Unified merge script with dedup rules to avoid false merges",
+          "Produces merged CSV outputs and logs for traceability"
+        ]
+      },
+      "aiTranslator": {
+        "oneLiner": "Chrome extension for AI-powered translation.",
+        "highlights": [
+          "Background service worker handles translate requests via messaging",
+          "Popup UI for quick interaction and a dedicated settings page",
+          "Standard Chrome extension packaging via manifest.json"
+        ]
+      }
     }
   },
   "works": {
@@ -84,7 +134,7 @@
   },
   "aboutSkills": {
     "engineering": {
-      "title": "Engineering",
+      "title": "Engi\u00adneer\u00ading",
       "description": "Frontend systems with scalable UI architecture.",
       "skills": {
         "responsive": "Responsive"
@@ -98,7 +148,7 @@
       }
     },
     "creative": {
-      "title": "Creative",
+      "title": "Cre\u00adative",
       "description": "3D, illustration, and audio production workflows.",
       "skills": {
         "soundtrack": "Soundtrack",

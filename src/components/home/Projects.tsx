@@ -72,11 +72,11 @@ export function Projects() {
       </div>
 
       <div className="card-body">
-        <p className="project-oneLiner">{project.oneLiner}</p>
+        <p className="project-oneLiner">{t(project.oneLinerKey)}</p>
 
         <ul className="project-highlights">
-          {project.highlights.map((highlight: string) => (
-            <li key={highlight}>{highlight}</li>
+          {project.highlightKeys.map((highlightKey: string) => (
+            <li key={highlightKey}>{t(highlightKey)}</li>
           ))}
         </ul>
 
@@ -119,10 +119,10 @@ export function Projects() {
           </div>
         </div>
         <div className="card-body">
-          <p className="project-oneLiner">{project.oneLiner}</p>
+          <p className="project-oneLiner">{t(project.oneLinerKey)}</p>
           <ul className="project-highlights">
-            {project.highlights.map((highlight: string) => (
-              <li key={highlight}>{highlight}</li>
+            {project.highlightKeys.map((highlightKey: string) => (
+              <li key={highlightKey}>{t(highlightKey)}</li>
             ))}
           </ul>
           <div className="project-tags">

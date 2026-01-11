@@ -463,6 +463,10 @@ main {
   overflow: visible !important;
 }
 
+.contact-section {
+  margin-bottom: 0;
+}
+
 .section-title {
   font-size: var(--text-3xl);
   font-weight: 700;
@@ -977,7 +981,7 @@ html[lang="zh"] .works-layout {
   right: 0;
   top: 0;
   bottom: 0;
-  width: 100px;
+  width: 150px;
   background: linear-gradient(to right, transparent 0%, var(--color-bg) 100%);
   pointer-events: none;
   z-index: 10;
@@ -1335,6 +1339,10 @@ html[lang="zh"] .works-layout {
 
 .skill-category {
   margin-bottom: var(--space-1);
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphenate-character: "-";
 }
 
 .skill-description {
@@ -1902,7 +1910,7 @@ html[lang="zh"] .works-layout {
 
 /* Contact Section */
 .contact-wrapper {
-  margin-bottom: var(--space-4);
+  margin-bottom: 10em;
   padding: 0;
 }
 
@@ -2519,6 +2527,13 @@ html[lang="zh"] .works-layout {
   .contact-email-item:hover .contact-email-text,
   .contact-email-item:hover .contact-email-tag {
     color: inherit;
+  }
+
+  .toggle-btn:hover,
+  .lang-toggle:hover {
+    background-color: var(--toggle-bg);
+    color: var(--toggle-fg);
+    border-color: var(--toggle-border);
   }
 }
 

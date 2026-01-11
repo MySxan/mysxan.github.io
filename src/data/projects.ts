@@ -13,8 +13,8 @@ export interface ShowcaseProject {
   cnTitle?: string;
   title: string;
   year: string;
-  oneLiner: string;
-  highlights: string[];
+  oneLinerKey: string;
+  highlightKeys: string[];
   tags: string[];
   links: ProjectLink[];
 }
@@ -24,12 +24,11 @@ export const showcaseProjects: ShowcaseProject[] = [
     id: "phigrim",
     title: "Phigrim",
     year: "2023",
-    oneLiner:
-      "Mobile community rhythm game with in-game chart discovery, download, and installation.",
-    highlights: [
-      "Designed end-to-end UX for chart discovery and installation",
-      "Built modular chart pipeline and metadata validation",
-      "Optimized scroll + asset loading for smooth mobile performance",
+    oneLinerKey: "projects.items.phigrim.oneLiner",
+    highlightKeys: [
+      "projects.items.phigrim.highlights.0",
+      "projects.items.phigrim.highlights.1",
+      "projects.items.phigrim.highlights.2",
     ],
     tags: ["Unity", "MasterGo", "UI/UX", "Design System"],
     links: [
@@ -49,12 +48,11 @@ export const showcaseProjects: ShowcaseProject[] = [
     id: "arxsbot",
     title: "ArxsBot",
     year: "2025",
-    oneLiner:
-      "A TypeScript multiplatform chat bot project using pnpm + Vitest.",
-    highlights: [
-      "TypeScript codebase with separated config/, src/, and tests/ structure",
-      "pnpm workspace setup for multi-package / modular growth",
-      "Test-ready setup via Vitest config",
+    oneLinerKey: "projects.items.arxsbot.oneLiner",
+    highlightKeys: [
+      "projects.items.arxsbot.highlights.0",
+      "projects.items.arxsbot.highlights.1",
+      "projects.items.arxsbot.highlights.2",
     ],
     tags: ["TypeScript", "pnpm", "Vitest", "Node.js", "Monorepo"],
     links: [
@@ -68,13 +66,12 @@ export const showcaseProjects: ShowcaseProject[] = [
   {
     id: "wordle-helper",
     title: "Wordle Helper",
-    year: "2025",
-    oneLiner:
-      "React-based Wordle helper that filters candidates based on guess feedback.",
-    highlights: [
-      "Real-time input with backspace editing for guesses",
-      "Color-coded feedback (green/yellow/gray) to refine results",
-      "Filters possible words and shows a definition when one remains",
+    year: "2024",
+    oneLinerKey: "projects.items.wordleHelper.oneLiner",
+    highlightKeys: [
+      "projects.items.wordleHelper.highlights.0",
+      "projects.items.wordleHelper.highlights.1",
+      "projects.items.wordleHelper.highlights.2",
     ],
     tags: ["React", "JavaScript", "Vite", "Tailwind CSS", "Wordle"],
     links: [
@@ -94,12 +91,11 @@ export const showcaseProjects: ShowcaseProject[] = [
     id: "course-scheduler",
     title: "Course Scheduler",
     year: "2025",
-    oneLiner:
-      "Web-based course scheduling app for building and exporting weekly timetables.",
-    highlights: [
-      "Visual weekly timetable with configurable time ranges",
-      "CSV import for bulk course setup",
-      "Export schedules as PNG images",
+    oneLinerKey: "projects.items.courseScheduler.oneLiner",
+    highlightKeys: [
+      "projects.items.courseScheduler.highlights.0",
+      "projects.items.courseScheduler.highlights.1",
+      "projects.items.courseScheduler.highlights.2",
     ],
     tags: ["React", "TypeScript", "Vite", "Tailwind CSS", "Papaparse"],
     links: [
@@ -114,12 +110,11 @@ export const showcaseProjects: ShowcaseProject[] = [
     id: "uniscraper",
     title: "UniScraper",
     year: "2025",
-    oneLiner:
-      "Multi-source university ranking scraper + merger that deduplicates and outputs unified CSV datasets.",
-    highlights: [
-      "Scrapes QS, THE, and US News rankings",
-      "Unified merge script with dedup rules to avoid false merges",
-      "Produces merged CSV outputs and logs for traceability",
+    oneLinerKey: "projects.items.uniscraper.oneLiner",
+    highlightKeys: [
+      "projects.items.uniscraper.highlights.0",
+      "projects.items.uniscraper.highlights.1",
+      "projects.items.uniscraper.highlights.2",
     ],
     tags: [
       "Python",
@@ -141,11 +136,11 @@ export const showcaseProjects: ShowcaseProject[] = [
     id: "ai-translator-extension",
     title: "AI Translator Extension",
     year: "2025",
-    oneLiner: "Chrome extension for AI-powered translation.",
-    highlights: [
-      "Background service worker handles translate requests via messaging",
-      "Popup UI for quick interaction and a dedicated settings page",
-      "Standard Chrome extension packaging via manifest.json",
+    oneLinerKey: "projects.items.aiTranslator.oneLiner",
+    highlightKeys: [
+      "projects.items.aiTranslator.highlights.0",
+      "projects.items.aiTranslator.highlights.1",
+      "projects.items.aiTranslator.highlights.2",
     ],
     tags: ["JavaScript", "Chrome Extension", "Manifest V3", "API Integration"],
     links: [
